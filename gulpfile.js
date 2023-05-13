@@ -7,19 +7,34 @@
 
 // Require the needed packages
 const gulp = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
 const uglify = require('gulp-uglify');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const babelify = require('babelify');
 
+// Define the HTML task
+const htmlmin = require('gulp-htmlmin');
+const fileinclude = require('gulp-file-include');
+function html() {
+  return gulp.src('src/*.html')
+  .pipe(fileinclude({
+    prefix: '@@',
+    basepath: '@file'
+  }))
+  .pipe(htmlmin({ collapseWhitespace: true }))
+  .pipe(gulp.dest('dist'))
+  .pipe(browserSync.stream());
+}
+
 // Define the styles task
+const sass = require('gulp-sass')(require('sass'));
+const cleanCSS = require('gulp-clean-css');
 function styles() {
   return gulp.src('src/styles/*.scss')
-  .pipe(sass().on('error', sass.logError))
-  .pipe(cleanCSS())
-  .pipe(gulp.dest('dist/styles'));
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCSS())
+    .pipe(gulp.dest('dist/styles'));
 }
 
 // browserify won't take relative paths, so these are necessary
@@ -29,29 +44,23 @@ const mainJsPath = path.resolve(__dirname, 'src/scripts/main.js');
 // Define the scripts task
 function scripts() {
   return browserify(mainJsPath)
-  .transform(babelify.configure({
-    presets: ["@babel/preset-env"]
-  }))
-  .bundle()
-  .pipe(source('main.min.js')) // Gives streaming vinyl file object
-  .pipe(buffer()) // Convert from streaming to buffered vinyl file object
-  .pipe(uglify()) // Now gulp-uglify works
-  .pipe(gulp.dest('dist/scripts'));
-}
-
-// Define the HTML task
-function html() {
-  return gulp.src('src/*.html')
-  .pipe(gulp.dest('dist'));
+    .transform(babelify.configure({
+      presets: ["@babel/preset-env"]
+    }))
+    .bundle()
+    .pipe(source('main.min.js')) // Gives streaming vinyl file object
+    .pipe(buffer()) // Convert from streaming to buffered vinyl file object
+    .pipe(uglify()) // Now gulp-uglify works
+    .pipe(gulp.dest('dist/scripts'));
 }
 
 // Imagemin task
 const imagemin = require('gulp-imagemin');
-const images =()=> {
+const images = () => {
   return gulp.src('src/images/**/*')
-  .pipe(imagemin())
-  .pipe(gulp.dest('dist/images'));
-}
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/images'));
+};
 
 // Live Reloading
 const browserSync = require('browser-sync').create();
@@ -62,26 +71,26 @@ const serve = (done) => {
     }
   });
   done();
-}
+};
 
 const reload = (done) => {
   browserSync.reload();
   done();
-}
+};
 
 // Testing
 const jasmine = require('gulp-jasmine');
-const test =()=> {
+const test = () => {
   return gulp.src('test/**/*.js')
-  .pipe(jasmine());
-}
+    .pipe(jasmine());
+};
 
 // Watch for changes
 function watch() {
   gulp.watch('src/styles/**/*.scss', gulp.series(styles, reload));
   gulp.watch('src/scripts/**/*.js', gulp.series(scripts, reload));
   gulp.watch('src/*.html', gulp.series(html, reload));
-  gulp.watch('src/images/**/*', gulp.series(images, reload))
+  gulp.watch('src/images/**/*', gulp.series(images, reload));
 }
 
 // Export all tasks to run individually by gulp <task-name>

@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Project</title>
-    <link rel="stylesheet" href="styles/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Tkach</title>
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <h1 id="greeting"></h1>
-    <script src="scripts/main.min.js"></script>
+  <header>
+    <h1>Daniel Tkach</h1>
+    <h3>Fullstack Software Developer</h3>
+    @@include('partials/navbar.html')
+  </header>
+  <main>
+    <section>
+      <h2>About Me</h2>
+      <p>Short introduction...</p>
+      <a href="about.html">Read more</a>
+    </section>
+    <section>
+      <h2>Featured Project</h2>
+      <p>Description of a project...</p>
+      <a href="projects.html">See all projects</a>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 My Portfolio</p>
+  </footer>
+  <script src="scripts/main.js"></script>
 </body>
 </html>

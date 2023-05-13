@@ -1,6 +1,6 @@
-export const greet = () => 'Hello, Gulp & Grunt!';
+export const greet = () => 'Hello, Gulp!';
 
 window.onload =()=> {
-  document.getElementById('greeting')
-    .textContent = greet();
+  
 }
+ 
