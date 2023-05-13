@@ -1,0 +1,28 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "grunt": "^1.6.1",
+    "grunt-babel": "^8.0.0",
+    "grunt-contrib-concat": "^2.1.0",
+    "grunt-contrib-sass": "^2.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
+    "grunt-contrib-watch": "^1.1.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2"
+  }
+}
