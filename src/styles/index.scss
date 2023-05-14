@@ -1,0 +1,55 @@
+body {
+  font-family: "Arial", sans-serif;
+  background: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+  }
+
+  h3 {
+    color: #df8647;
+    margin: 0.5em;
+  }
+}
+
+nav {
+  margin-top: 3em;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+
+  a {
+    text-decoration: none;
+    color: #47aadf; // Choose a color that matches your design.
+    font-size: 1.2rem; // Adjust size as needed.
+    transition: color 0.3s ease;
+    border-bottom: 1px solid #555;
+    padding: 0.5em 1em;
+
+    &:hover {
+      color: #df8647; // Change color on hover.
+      border-bottom: 1px solid #47aadf;
+      border-top: 1px solid #47aadf;
+    }
+  }
+}
+
+.main-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
