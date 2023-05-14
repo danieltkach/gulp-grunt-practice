@@ -27,6 +27,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+
 function styles() {
   return gulp.src('src/styles/*.scss')
     .pipe(sourcemaps.init())
